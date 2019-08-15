@@ -1,0 +1,40 @@
+{
+  "output_file": "settings.json",
+	"warpworld_username": {
+        "type": "textbox",
+        "value": "",
+        "label": "Warp World Username",
+        "tooltip": "The emoticon or text that will be used when the user wins",
+        "group": "General"
+    },
+    "warpworld_key": {
+        "type": "textbox",
+        "value": "",
+        "label": "Warp World Key",
+        "tooltip": "You can get this from your Warp Bar URL, look for key= at the end of the URL.",
+        "group": "General"
+    },
+    "command_character": {
+    	"type": "textbox",
+        "value": "!",
+        "label": "Command character",
+        "tooltip": "What character should commands start with, for example if you enter !, commands will be in the form !command",
+        "group": "General"
+    },
+    "permission_join": {
+	    "type": "dropdown",
+	    "value": "Everyone",
+	    "items": ["Everyone","Regular","Sponsor","Moderator","Editor", "Owner"],
+	    "label": "Join/Leave Queue Permission level",
+	    "tooltip": "Set the permission level required to join the queue",
+	    "group": "Permissions"
+	},
+    "permission_next": {
+	    "type": "dropdown",
+	    "value": "Owner",
+	    "items": ["Everyone","Regular","Sponsor","Moderator","Editor", "Owner"],
+	    "label": "Permission level to modify the queue (next/subnext/random/etc)",
+	    "tooltip": "Set the permission level required to join the queue",
+	    "group": "Permissions"
+	},
+}
