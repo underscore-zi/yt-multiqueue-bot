@@ -10,7 +10,6 @@ This is really just a temporary script until Warp World releases official suppor
 3. Open Streamlabs Chat Bot, navigate to the `</> Scripts` tab. If the Scripts tab isn't present, please refer to https://github.com/StreamlabsSupport/Streamlabs-Chatbot/wiki/Prepare-&-Import-Scripts
 4. Find the script named YT Multiqueue Bot, click on it and fill in the appropiate settings
 5. Hit the "Enable" checkbox after saving settings, or turn it off then back on again to ensure the new settings have been loaded.
-6. Use the !queue command in your chat to test, it will display the name of the current queue
 
 # Commands
 
