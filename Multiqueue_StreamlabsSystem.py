@@ -60,6 +60,8 @@ def init_settings():
     settings['permission_open'] = settings['permission_next']
     settings['permission_close'] = settings['permission_next']
     settings['permission_nextactive'] = settings['permission_next']
+    settings['permission_won'] = settings['permission_next']
+    settings['permission_loss'] = settings['permission_next']
 
 
 
