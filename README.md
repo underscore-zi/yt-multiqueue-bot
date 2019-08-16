@@ -5,7 +5,7 @@ This is really just a temporary script until Warp World releases official suppor
 
 # Installation
 
-1. Download the .zip file using the green button to the upper right
+1. Download the .zip file using the green button (Clone or Download) to the upper right, choose Download Zip
 2. Extract the "yt-multiqueue-bot-master" folder into `Streamlabs Chatbot\Services\Scripts`
 3. Open Streamlabs Chat Bot, navigate to the `</> Scripts` tab. If the Scripts tab isn't present, please refer to https://github.com/StreamlabsSupport/Streamlabs-Chatbot/wiki/Prepare-&-Import-Scripts
 4. Find the script named YT Multiqueue Bot, click on it and fill in the appropiate settings
