@@ -156,8 +156,8 @@ def WW_join(data):
         "token": settings['warpworld_key'],
         "viewerID": uid,
         "viewerName": data.UserName,
-        "viewerFollower": False,
-        "viewerSub": Parent.HasPermission(data.User, "Sponsor", ""),
+        "viewerFollow": 0,
+        "viewerSub": 0,
         "service":"youtube",
     }
     query = urllib.urlencode(params)
