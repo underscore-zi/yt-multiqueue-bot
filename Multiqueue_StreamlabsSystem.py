@@ -199,7 +199,7 @@ def WW_position(data):
     }
     query = urllib.urlencode(params)
     url = base_domain + "/{username}/join_queue?{query}".format(username=settings['warpworld_username'], query=query)
-    Parent.SendStreamMessage(query)
+    #Parent.SendStreamMessage(query)
     WW_handle_response(Parent.GetRequest(url, headers))
 
 
@@ -210,7 +210,7 @@ def WW_status(newstatus):
         "service": "youtube",
     }
     WW_handle_response(Parent.PostRequest(url, headers, params, True))
-
+6 
 
 def WW_next(_):
     WW_status("next")
