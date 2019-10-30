@@ -53,6 +53,7 @@ def init_settings():
     settings['permission_current'] = settings['permission_join']
     settings['permission_position'] = settings['permission_join']
     settings['permission_list'] = settings['permission_join']
+    settings['permission_queue'] = settings['permission_join']
 
     settings['permission_random'] = settings['permission_next']
     settings['permission_subnext'] = settings['permission_next']
@@ -63,6 +64,8 @@ def init_settings():
     settings['permission_nextactive'] = settings['permission_next']
     settings['permission_won'] = settings['permission_next']
     settings['permission_loss'] = settings['permission_next']
+    settings['permission_newsession'] = settings['permission_next']
+    settings['permission_endsession'] = settings['permission_next']
 
 
 
@@ -264,6 +267,36 @@ def WW_list(_):
     url = base_domain + "/{username}/warpqueue_list?{query}".format(username=settings['warpworld_username'], query=query)
     WW_handle_response(Parent.GetRequest(url, headers))
 
+def WW_queue(_):
+    url = base_domain + "/{}/".format(settings['warpworld_username'])
+    res = Parent.GetRequest(url, headers)
+    res = json.loads(res)
+    if res['status'] != 200:
+        Parent.Log(ScriptName, "Got an unexpected status code from Warp World")
+
+    res = json.loads(res['response'])
+    if 'multi_queue_information' not in res or 'queue_description' not in res['multi_queue_information']:
+        Parent.Log(ScriptName, "No queue is active")
+    else:
+        Parent.SendStreamMessage(res['multi_queue_information']['queue_description'])
+
+def WW_newsession(data):
+    url = base_domain + "/{}/new_session?token={}".format(settings['warpworld_username'],settings['warpworld_key'])
+    name = data.GetParam(1)
+    params = {
+        "sessionName": name,
+    }
+    WW_handle_response(Parent.PostRequest(url, headers, params, True))
+
+def WW_endsession(data):
+    url = base_domain + "/{}/end_session?token={}".format(settings['warpworld_username'],settings['warpworld_key'])
+    name = data.GetParam(1)
+    params = {
+        "sessionName": name,
+    }
+    WW_handle_response(Parent.PostRequest(url, headers, params, True))
+
+
 
 def next_active(_):
     url = base_domain + "/{}/warp_queue".format(settings['warpworld_username'])
@@ -300,6 +333,9 @@ CMD_MAP = {
     "close": WW_close,
     "won": WW_won,
     "loss": WW_loss,
-    "list": WW_list,
+    "list": WW_list, #no offline/online support
+    "queue": WW_queue,
+    "newsession": WW_newsession,
+    "endsession": WW_endsession,
     "nextactive": next_active,
 }
