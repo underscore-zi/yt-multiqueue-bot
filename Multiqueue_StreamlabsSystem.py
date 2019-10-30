@@ -52,6 +52,7 @@ def init_settings():
     settings['permission_leave'] = settings['permission_join']
     settings['permission_current'] = settings['permission_join']
     settings['permission_position'] = settings['permission_join']
+    settings['permission_list'] = settings['permission_join']
 
     settings['permission_random'] = settings['permission_next']
     settings['permission_subnext'] = settings['permission_next']
@@ -156,8 +157,8 @@ def WW_join(data):
         "token": settings['warpworld_key'],
         "viewerID": uid,
         "viewerName": data.UserName,
-        "viewerFollower": False,
-        "viewerSub": Parent.HasPermission(data.User, "Sponsor", ""),
+        "viewerFollow": 0,
+        "viewerSub": 0,
         "service":"youtube",
     }
     query = urllib.urlencode(params)
@@ -199,7 +200,7 @@ def WW_position(data):
     }
     query = urllib.urlencode(params)
     url = base_domain + "/{username}/join_queue?{query}".format(username=settings['warpworld_username'], query=query)
-    Parent.SendStreamMessage(query)
+    #Parent.SendStreamMessage(query)
     WW_handle_response(Parent.GetRequest(url, headers))
 
 
@@ -210,7 +211,7 @@ def WW_status(newstatus):
         "service": "youtube",
     }
     WW_handle_response(Parent.PostRequest(url, headers, params, True))
-
+6 
 
 def WW_next(_):
     WW_status("next")
@@ -254,6 +255,15 @@ def WW_open(_):
 def WW_close(_):
     WW_update_setting('status', "0")
 
+def WW_list(_):
+    params = {
+        "onlinestatus": "",
+        "token": settings['warpworld_key'],
+    }
+    query = urllib.urlencode(params)
+    url = base_domain + "/{username}/warpqueue_list?{query}".format(username=settings['warpworld_username'], query=query)
+    WW_handle_response(Parent.GetRequest(url, headers))
+
 
 def next_active(_):
     url = base_domain + "/{}/warp_queue".format(settings['warpworld_username'])
@@ -290,5 +300,6 @@ CMD_MAP = {
     "close": WW_close,
     "won": WW_won,
     "loss": WW_loss,
+    "list": WW_list,
     "nextactive": next_active,
 }
