@@ -258,9 +258,10 @@ def WW_open(_):
 def WW_close(_):
     WW_update_setting('status', "0")
 
-def WW_list(_):
+def WW_list(data):
+    status = data.GetParam(1)
     params = {
-        "onlinestatus": "",
+        "onlinestatus": status,
         "token": settings['warpworld_key'],
     }
     query = urllib.urlencode(params)
